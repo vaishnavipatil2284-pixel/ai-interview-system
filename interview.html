@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Mock interview — InterviewPrep AI{% endblock %}
+{% block content %}
+<div class="interview-top"><a class="back-link" href="{{ url_for('dashboard') }}">← Dashboard</a><span class="pill">{{ interview['category'] }}</span></div>
+<div class="interview-layout">
+  <aside class="interview-sidebar panel"><span class="eyebrow">MOCK INTERVIEW</span><h2>{{ interview['role'] }}</h2><p class="muted">Take your time. Aim to explain the idea clearly and include an example when useful.</p><div class="progress-label"><span>Question progress</span><strong>{{ index }} of {{ total }}</strong></div><div class="progress-track"><div class="progress-fill" style="width: {{ (index / total * 100)|round }}%"></div></div><div class="tip-box"><strong>Interview tip</strong><p>Start with a direct answer, explain the reasoning, then add a short example.</p></div></aside>
+  <section class="panel question-panel">
+    <div class="question-meta"><span class="eyebrow">QUESTION {{ "%02d"|format(index) }}</span><span class="difficulty">{{ question['difficulty'] }}</span></div>
+    <h1>{{ question['question_text'] }}</h1>
+    <p class="muted">Write your answer in your own words. The system will provide practice feedback after you submit.</p>
+    <form method="post" class="answer-form">
+      <label for="answer">Your answer</label>
+      <textarea id="answer" name="answer" rows="9" maxlength="10000" required placeholder="Explain your answer here...">{{ request.form.get('answer', '') }}</textarea>
+      <div class="answer-hint"><span>Be clear and specific.</span><span id="char-count">0 / 10,000</span></div>
+      <button class="button primary full" type="submit">Submit answer <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+</div>
+{% endblock %}

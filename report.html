@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Interview report — InterviewPrep AI{% endblock %}
+{% block content %}
+<div class="report-header"><span class="eyebrow">SESSION COMPLETE</span><h1>Nice work finishing your interview.</h1><p class="muted">Review the session, celebrate what went well, and choose one thing to improve next time.</p></div>
+<section class="report-summary panel">
+  <div class="report-score"><span class="eyebrow">OVERALL PRACTICE SCORE</span><div class="big-score">{{ "%.1f"|format(overall) }}<small>/100</small></div><div class="score-track"><div class="score-fill" style="width: {{ overall }}%"></div></div></div>
+  <div class="report-details"><div><span class="stat-label">Category</span><strong>{{ interview['category'] }}</strong></div><div><span class="stat-label">Target role</span><strong>{{ interview['role'] }}</strong></div><div><span class="stat-label">Questions answered</span><strong>{{ answers|length }}</strong></div></div>
+</section>
+<section class="panel"><div class="section-title"><div><span class="eyebrow">YOUR ANSWERS</span><h2>Question-by-question review</h2></div></div>
+  {% if answers %}
+    <div class="table-wrap"><table><thead><tr><th>Question</th><th>Score</th><th>Feedback</th></tr></thead><tbody>
+    {% for item in answers %}<tr><td>{{ item['question_text'] }}</td><td><span class="score-pill">{{ "%.0f"|format(item['score']) }}/100</span></td><td>{{ item['feedback'] }}</td></tr>{% endfor %}
+    </tbody></table></div>
+  {% else %}<p class="muted">No answers were submitted in this session.</p>{% endif %}
+</section>
+<div class="bottom-actions"><form method="post" action="{{ url_for('start_interview') }}"><input type="hidden" name="category" value="{{ interview['category'] }}"><input type="hidden" name="role" value="{{ interview['role'] }}"><button class="button primary" type="submit">Practice this category again →</button></form><a class="button secondary" href="{{ url_for('dashboard') }}">Back to dashboard</a></div>
+{% endblock %}

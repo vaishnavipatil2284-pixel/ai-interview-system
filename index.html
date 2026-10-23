@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}InterviewPrep AI — Practice with confidence{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">YOUR PERSONAL MOCK INTERVIEW COACH</span>
+    <h1>Practice interviews.<br><span class="gradient-text">Build confidence.</span></h1>
+    <p class="lead">Prepare for technical and HR interviews with guided questions, actionable feedback, and progress reports.</p>
+    <div class="hero-actions">
+      <a class="button primary" href="{{ url_for('register') }}">Start practicing <span aria-hidden="true">→</span></a>
+      <a class="button secondary" href="{{ url_for('login') }}">I already have an account</a>
+    </div>
+    <div class="trust-line"><span class="dot"></span> Works with a built-in question bank · AI evaluation is optional</div>
+  </div>
+  <div class="hero-card">
+    <div class="card-top"><span class="live-dot"></span> MOCK INTERVIEW PREVIEW <span class="pill">Python</span></div>
+    <p class="question-label">QUESTION 02 / 05</p>
+    <h2>What is the difference between a list and a tuple?</h2>
+    <div class="fake-answer">A list is mutable, which means its items can be changed. A tuple is immutable...</div>
+    <div class="preview-score"><div><span class="score-number">85</span><span class="muted"> / 100</span><p class="small">Example score</p></div><div class="score-ring">85%</div></div>
+    <div class="feedback-chip">✓ Clear explanation</div>
+    <div class="feedback-chip amber">↗ Add a practical example</div>
+  </div>
+</section>
+<section class="feature-grid">
+  <article class="feature"><div class="feature-icon">✦</div><h3>Practice by category</h3><p>Choose Python, SQL, Data Analytics, HR, and more.</p></article>
+  <article class="feature"><div class="feature-icon">◎</div><h3>Useful feedback</h3><p>Review strengths, improvement points, and sample answers.</p></article>
+  <article class="feature"><div class="feature-icon">↗</div><h3>Track your progress</h3><p>Save sessions and review scores over time.</p></article>
+</section>
+{% endblock %}

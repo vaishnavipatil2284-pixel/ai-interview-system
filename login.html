@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Log in — InterviewPrep AI{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <div class="auth-intro"><span class="eyebrow">WELCOME BACK</span><h1>Keep getting better, one interview at a time.</h1><p>Continue practicing and review your previous feedback.</p></div>
+  <form class="panel auth-form" method="post">
+    <h2>Log in</h2><p class="muted">Enter your account details.</p>
+    <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required value="{{ request.form.get('email', '') }}">
+    <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+    <button class="button primary full" type="submit">Log in</button>
+    <p class="form-foot">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+  </form>
+</section>
+{% endblock %}

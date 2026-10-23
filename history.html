@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Interview history — InterviewPrep AI{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">YOUR PROGRESS</span><h1>Interview history</h1><p class="muted">Every session is a chance to learn something new.</p></div><a class="button primary" href="{{ url_for('dashboard') }}">New interview +</a></div>
+<section class="panel">
+  {% if interviews %}
+  <div class="table-wrap"><table><thead><tr><th>Category</th><th>Target role</th><th>Date started</th><th>Questions answered</th><th>Score</th><th>Status</th></tr></thead><tbody>
+  {% for item in interviews %}<tr><td>{{ item['category'] }}</td><td>{{ item['role'] }}</td><td>{{ item['started_at'][:10] }}</td><td>{{ item['answer_count'] }}</td><td>{% if item['overall_score'] is not none %}<span class="score-pill">{{ "%.1f"|format(item['overall_score']) }}</span>{% else %}—{% endif %}</td><td>{% if item['completed_at'] %}<span class="status complete">Completed</span>{% else %}<span class="status pending">Incomplete</span>{% endif %}</td></tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}<div class="empty-state"><div class="empty-icon">▤</div><h3>No interviews yet</h3><p>Start a mock interview from your dashboard to build your history.</p><a class="button primary" href="{{ url_for('dashboard') }}">Go to dashboard</a></div>{% endif %}
+</section>
+{% endblock %}
